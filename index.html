@@ -159,6 +159,7 @@ h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
 .room-body h2{font-size:1.45rem;margin-bottom:8px}
 .room-price-sm{font-size:1rem;color:var(--gold);font-weight:600;margin-bottom:14px}
 .room-price-sm span{font-size:12px;color:var(--grey);font-weight:400}
+.room-type{font-size:13px;color:var(--grey);margin-bottom:10px}
 .see-more{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--gold);letter-spacing:.06em;text-transform:uppercase}
 .arr{display:inline-block;transition:transform var(--ease)}
 .room-card:hover .arr{transform:translateX(5px)}
@@ -192,6 +193,7 @@ footer{background:#050505;border-top:1px solid var(--bdr);padding:clamp(48px,6vw
 .bc-link{color:var(--gold);cursor:pointer}
 .bc-link:hover{text-decoration:underline}
 .rp-head h1{font-size:clamp(2.4rem,6vw,4.5rem)}
+.rp-type{font-size:15px;color:var(--grey);margin-top:6px}
 .avail-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);color:#4ade80;font-size:11.5px;font-weight:600;padding:4px 13px;border-radius:50px;margin-top:10px}
 .adot{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:blink 1.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
@@ -407,6 +409,7 @@ footer{background:#050505;border-top:1px solid var(--bdr);padding:clamp(48px,6vw
           <div class="room-body">
             <div class="room-tag">Signature</div>
             <h2>Signature Room</h2>
+            <div class="room-type">Studio Room</div>
             <div class="room-price-sm">₦48,000 <span>/ night</span></div>
             <div class="see-more">Explore Room <span class="arr">→</span></div>
           </div>
@@ -420,6 +423,7 @@ footer{background:#050505;border-top:1px solid var(--bdr);padding:clamp(48px,6vw
           <div class="room-body">
             <div class="room-tag">Prestige</div>
             <h2>Prestige Room</h2>
+            <div class="room-type">A Room and Parlour</div>
             <div class="room-price-sm">₦68,000 <span>/ night</span></div>
             <div class="see-more">Explore Room <span class="arr">→</span></div>
           </div>
@@ -433,6 +437,7 @@ footer{background:#050505;border-top:1px solid var(--bdr);padding:clamp(48px,6vw
           <div class="room-body">
             <div class="room-tag">Executive</div>
             <h2>Executive Room</h2>
+            <div class="room-type">A Bigger Room and Parlour</div>
             <div class="room-price-sm">₦78,000 <span>/ night</span></div>
             <div class="see-more">Explore Room <span class="arr">→</span></div>
           </div>
@@ -621,6 +626,7 @@ footer{background:#050505;border-top:1px solid var(--bdr);padding:clamp(48px,6vw
 const ROOMS = {
   signature: {
     name: 'Signature',
+    type: 'Studio Room',
     price: '48,000',
     slides: [
       { src: 'photos/sig-1.jpeg', alt: 'Signature Room – Bedroom' },
@@ -634,6 +640,7 @@ const ROOMS = {
   },
   prestige: {
     name: 'Prestige',
+    type: 'A Room and Parlour',
     price: '68,000',
     slides: [
       { src: 'photos/pres-5.jpeg', alt: 'Prestige Room – Bedroom' },
@@ -649,6 +656,7 @@ const ROOMS = {
   },
   executive: {
     name: 'Executive',
+    type: 'A Bigger Room and Parlour',
     price: '78,000',
     slides: [
       { src: 'photos/exec-1.jpeg', alt: 'Executive Room – Living Area' },
@@ -754,6 +762,7 @@ function buildRoom(key) {
         <span>${r.name} Room</span>
       </div>
       <h1>${r.name} Room</h1>
+      <div class="rp-type">${r.type}</div>
       <div class="avail-badge"><span class="adot"></span>Currently Available</div>
     </div>
   </div>
