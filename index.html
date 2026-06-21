@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TFE Apartments – Premium Short-Stay Apartments in Ibadan. Signature, Prestige & Executive rooms with 24/7 electricity, free WiFi and top security.">
+<title>TFE Apartments – Premium Short-Stay in Ibadan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ================================================================
+   RESET & BASE
+================================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#080808;color:#fff;font-family:'Inter',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block;object-fit:cover}
+button{font-family:inherit;cursor:pointer}
+
+/* ================================================================
+   DESIGN TOKENS
+================================================================ */
+:root{
+  --bg:    #080808;
+  --bg2:   #101010;
+  --bg3:   #181818;
+  --gold:  #C9A84C;
+  --gold2: #E5C46A;
+  --gdim:  rgba(201,168,76,0.11);
+  --white: #ffffff;
+  --grey:  #909090;
+  --bdr:   rgba(255,255,255,0.08);
+  --nav:   72px;
+  --rad:   3px;
+  --ease:  0.28s ease;
+}
+
+/* ================================================================
+   TYPOGRAPHY
+================================================================ */
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
+.eyebrow{display:block;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.sec-title{font-size:clamp(1.9rem,4.5vw,3rem);color:var(--white);margin-bottom:1rem}
+.sec-title em{font-style:normal;color:var(--gold)}
+.gold-rule{width:44px;height:2px;background:var(--gold);margin-top:12px}
+
+/* ================================================================
+   NAV
+================================================================ */
+#nav{
+  position:fixed;top:0;left:0;right:0;height:var(--nav);
+  background:rgba(8,8,8,.96);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--bdr);z-index:1000;
+  display:flex;align-items:center;
+  padding:0 clamp(16px,5vw,48px);
+}
+.nav-inner{max-width:1240px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.nav-logo em{font-style:normal;color:var(--gold)}
+.nav-logo img{height:42px;width:auto}
+.nav-right{display:flex;align-items:center;gap:28px}
+.nav-link{font-size:13.5px;font-weight:500;color:var(--grey);cursor:pointer;transition:color var(--ease);letter-spacing:.02em}
+.nav-link:hover,.nav-link.on{color:var(--white)}
+.btn-book{background:var(--gold);color:#080808;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:9px 22px;border-radius:var(--rad);border:none;transition:background var(--ease),transform var(--ease)}
+.btn-book:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-enq{border:1px solid var(--gold);color:var(--gold);font-weight:600;font-size:12px;letter-spacing:.07em;padding:8px 17px;border-radius:var(--rad);background:transparent;transition:background var(--ease);display:inline-block;white-space:nowrap}
+.btn-enq:hover{background:var(--gdim)}
+
+/* hamburger */
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.hbg span{display:block;width:22px;height:2px;background:var(--white);border-radius:1px;transition:all var(--ease)}
+.hbg.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile drawer */
+.mob-drawer{display:none;position:fixed;top:var(--nav);left:0;right:0;background:rgba(8,8,8,.99);border-bottom:1px solid var(--bdr);padding:16px 24px 28px;flex-direction:column;gap:0;z-index:999}
+.mob-drawer.open{display:flex}
+.mob-drawer .nav-link{font-size:16px;color:var(--white);padding:15px 0;border-bottom:1px solid var(--bdr)}
+.mob-drawer .btn-book,.mob-drawer .btn-enq{width:100%;text-align:center;padding:14px;font-size:14px;margin-top:12px;display:block}
+
+@media(max-width:700px){
+  .nav-right{display:none}
+  .hbg{display:flex}
+}
+
+/* ================================================================
+   PAGE SYSTEM
+================================================================ */
+.pg{display:none;padding-top:var(--nav)}
+.pg.active{display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.sec{padding:clamp(56px,8vw,96px) clamp(16px,4vw,40px)}
+.sec-hdr{margin-bottom:44px}
+
+/* ================================================================
+   PLACEHOLDER IMAGE SYSTEM
+================================================================ */
+.ph{
+  background:linear-gradient(135deg,#111 0%,#191919 50%,#111 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;text-align:center;padding:24px;
+  border:1px dashed rgba(201,168,76,.22);
+  color:var(--gold);width:100%;height:100%;
+}
+.ph-ico{font-size:34px;opacity:.4}
+.ph-lbl{font-weight:600;font-size:13.5px}
+.ph-sub{font-size:12px;color:var(--grey);max-width:260px;line-height:1.5}
+
+/* ================================================================
+   HERO SLIDESHOW
+================================================================ */
+.hero{position:relative;height:calc(100svh - var(--nav));min-height:460px;overflow:hidden;background:#0a0a0a}
+.hero-track{display:flex;height:100%;transition:transform .85s cubic-bezier(.76,0,.24,1)}
+.hero-slide{min-width:100%;height:100%;position:relative;flex-shrink:0}
+.hero-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(0,0,0,.72) 0%,rgba(0,0,0,.25) 55%,transparent 100%);
+  display:flex;align-items:flex-end;
+  padding:clamp(32px,6vw,72px) clamp(20px,6vw,72px);
+}
+.hero-text h1{font-size:clamp(1.9rem,5.5vw,4rem);color:var(--white);margin-bottom:14px;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.hero-text h1 em{font-style:normal;color:var(--gold)}
+.hero-text p{font-size:clamp(.9rem,1.8vw,1.05rem);color:rgba(255,255,255,.82);max-width:480px;line-height:1.8}
+.hero-bar{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:8px;padding-bottom:24px;z-index:10}
+.hdot{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.28);cursor:pointer;transition:all .4s ease}
+.hdot.on{width:22px;background:var(--gold)}
+
+/* welcome band removed */
+
+/* ================================================================
+   FEATURES
+================================================================ */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.feat-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rad);padding:26px 22px;position:relative;overflow:hidden;transition:transform var(--ease),border-color var(--ease)}
+.feat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform var(--ease)}
+.feat-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.3)}
+.feat-card:hover::after{transform:scaleX(1)}
+.feat-ico{font-size:26px;margin-bottom:12px}
+.feat-card h3{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;margin-bottom:6px}
+.feat-card p{font-size:12.5px;color:var(--grey);line-height:1.65}
+
+/* ================================================================
+   ROOM CARDS (HOME)
+================================================================ */
+.room-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
+.room-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rad);overflow:hidden;cursor:pointer;transition:transform var(--ease),border-color var(--ease)}
+.room-card:hover{transform:translateY(-6px);border-color:var(--gold)}
+.room-thumb{height:230px;position:relative;overflow:hidden;background:#111;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.room-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.room-thumb .ph-ico{font-size:30px;color:var(--gold);opacity:.35;position:relative;z-index:1}
+.room-thumb .ph-lbl{font-size:12px;color:var(--gold);opacity:.5;position:relative;z-index:1}
+.room-body{padding:22px}
+.room-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.35);padding:3px 10px;border-radius:2px;margin-bottom:10px}
+.room-body h2{font-size:1.45rem;margin-bottom:8px}
+.room-price-sm{font-size:1rem;color:var(--gold);font-weight:600;margin-bottom:14px}
+.room-price-sm span{font-size:12px;color:var(--grey);font-weight:400}
+.see-more{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--gold);letter-spacing:.06em;text-transform:uppercase}
+.arr{display:inline-block;transition:transform var(--ease)}
+.room-card:hover .arr{transform:translateX(5px)}
+
+/* ================================================================
+   FOOTER
+================================================================ */
+footer{background:#050505;border-top:1px solid var(--bdr);padding:clamp(48px,6vw,72px) clamp(16px,4vw,40px) 28px}
+.foot-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;padding-bottom:44px;border-bottom:1px solid var(--bdr);margin-bottom:24px}
+.foot-logo{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:12px}
+.foot-logo em{font-style:normal;color:var(--gold)}
+.foot-desc{font-size:13px;color:var(--grey);line-height:1.85;margin-bottom:18px;max-width:265px}
+.foot-socials{display:flex;gap:10px}
+.fsoc{width:34px;height:34px;border-radius:50%;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:all var(--ease)}
+.fsoc:hover{border-color:var(--gold);background:var(--gdim)}
+.foot-col h4{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.foot-col ul li{font-size:13px;color:var(--grey);margin-bottom:10px;cursor:pointer;transition:color var(--ease)}
+.foot-col ul li:hover{color:var(--white)}
+.foot-col a{font-size:13px;color:var(--grey);display:flex;gap:8px;align-items:flex-start;margin-bottom:10px;transition:color var(--ease)}
+.foot-col a:hover{color:var(--white)}
+.fc-ico{color:var(--gold);font-size:15px;flex-shrink:0;margin-top:1px}
+.foot-bottom{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--grey);flex-wrap:wrap;gap:6px}
+.foot-bottom em{font-style:normal;color:var(--gold)}
+
+/* ================================================================
+   ROOM PAGES
+================================================================ */
+.rp-head{background:var(--bg2);padding:clamp(48px,6vw,72px) clamp(16px,4vw,40px) clamp(36px,4vw,52px);border-bottom:1px solid var(--bdr)}
+.rp-head-inner{max-width:1200px;margin:0 auto}
+.breadcrumb{font-size:12px;color:var(--grey);margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.bc-link{color:var(--gold);cursor:pointer}
+.bc-link:hover{text-decoration:underline}
+.rp-head h1{font-size:clamp(2.4rem,6vw,4.5rem)}
+.avail-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);color:#4ade80;font-size:11.5px;font-weight:600;padding:4px 13px;border-radius:50px;margin-top:10px}
+.adot{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:blink 1.8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Gallery */
+.rp-gal{padding:clamp(32px,4vw,52px) clamp(16px,4vw,40px);background:var(--bg)}
+.rp-gal .wrap{max-width:1200px}
+.gal-wrap{position:relative;border-radius:var(--rad);overflow:hidden;aspect-ratio:16/9;max-height:560px;background:var(--bg3)}
+.gal-track{display:flex;height:100%;transition:transform .65s cubic-bezier(.76,0,.24,1)}
+.gal-slide{min-width:100%;height:100%;flex-shrink:0}
+.gal-slide img{width:100%;height:100%;object-fit:cover}
+.gal-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.65);border:1px solid rgba(201,168,76,.4);color:var(--gold);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;transition:all var(--ease);z-index:5;line-height:1}
+.gal-btn:hover{background:var(--gold);color:#080808;border-color:var(--gold)}
+.gal-prev{left:14px}
+.gal-next{right:14px}
+.gal-count{position:absolute;bottom:14px;right:14px;background:rgba(0,0,0,.6);color:var(--white);font-size:11px;padding:3px 10px;border-radius:50px}
+.gal-dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.gdot{width:6px;height:6px;border-radius:50%;background:var(--bdr);cursor:pointer;transition:all var(--ease)}
+.gdot.on{background:var(--gold)}
+
+/* Room detail layout */
+.rp-body{padding:clamp(36px,5vw,60px) clamp(16px,4vw,40px)}
+.rp-body .wrap{max-width:1200px}
+.rp-layout{display:grid;grid-template-columns:1fr 360px;gap:44px;align-items:start}
+.rp-feats h3{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.feat-list{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:36px}
+.fi{display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(255,255,255,.8)}
+.fi-ico{color:var(--gold);font-size:15px;flex-shrink:0}
+
+/* Sidebar */
+.rp-sidebar{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rad);padding:28px;position:sticky;top:calc(var(--nav) + 16px)}
+.sb-price{font-family:'Playfair Display',serif;font-size:2.1rem;color:var(--gold);font-weight:700;line-height:1}
+.sb-per{font-size:12px;color:var(--grey);margin:4px 0 16px}
+.sb-caution{font-size:12.5px;color:var(--grey);padding:10px 14px;background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--rad);margin-bottom:12px;line-height:1.65}
+.sb-discount{font-size:12px;color:var(--gold);padding:8px 14px;background:var(--gdim);border:1px solid rgba(201,168,76,.2);border-radius:var(--rad);margin-bottom:22px;display:flex;align-items:center;gap:7px}
+.sb-rule{border:none;border-top:1px solid var(--bdr);margin:18px 0}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px;border-radius:var(--rad);font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;transition:all var(--ease);border:none;margin-bottom:11px;text-decoration:none}
+.wa-btn.primary{background:var(--gold);color:#080808}
+.wa-btn.primary:hover{background:var(--gold2);transform:translateY(-2px)}
+.wa-btn.outline{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+.wa-btn.outline:hover{background:var(--gdim)}
+
+/* ================================================================
+   ABOUT PAGE
+================================================================ */
+.about-hero{text-align:center;background:var(--bg2);border-bottom:1px solid var(--bdr);padding:clamp(64px,8vw,100px) clamp(16px,4vw,40px) clamp(48px,6vw,72px)}
+.about-hero h1{font-size:clamp(2.5rem,6vw,4.2rem);margin-bottom:16px}
+.about-hero p{font-size:clamp(.95rem,1.8vw,1.1rem);color:rgba(255,255,255,.7);max-width:600px;margin:0 auto;line-height:1.85}
+.about-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:0}
+.about-text p{font-size:14.5px;color:rgba(255,255,255,.72);line-height:1.95;margin-bottom:14px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rad);padding:22px;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);display:block;margin-bottom:4px}
+.stat-lbl{font-size:11.5px;color:var(--grey)}
+
+/* House rules */
+.rules-sec{background:var(--bg2);padding:clamp(48px,6vw,72px) clamp(16px,4vw,40px);border-top:1px solid var(--bdr)}
+.rules-sec .wrap{max-width:1000px}
+.ci-row{display:flex;gap:16px;margin-top:28px;margin-bottom:16px;flex-wrap:wrap}
+.ci-box{flex:1;min-width:160px;background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--rad);padding:18px 20px}
+.ci-label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.ci-val{font-size:1.2rem;font-family:'Playfair Display',serif}
+.ci-note{font-size:12.5px;color:var(--grey);margin-bottom:24px;line-height:1.65}
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.rule-item{display:flex;gap:11px;align-items:flex-start;padding:14px 16px;background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--rad);font-size:13px;color:rgba(255,255,255,.75);line-height:1.55}
+.rule-ico{color:var(--gold);font-size:14px;flex-shrink:0;margin-top:1px}
+
+/* Contact */
+.contact-sec{padding:clamp(48px,6vw,72px) clamp(16px,4vw,40px)}
+.contact-sec .wrap{max-width:1000px}
+.c-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.c-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rad);padding:26px 20px;text-align:center;display:block;text-decoration:none;transition:transform var(--ease),border-color var(--ease)}
+.c-card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.c-ico{font-size:26px;margin-bottom:10px}
+.c-lbl{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
+.c-card p{font-size:12.5px;color:var(--grey)}
+
+/* Map */
+.map-sec{padding:0 clamp(16px,4vw,40px) clamp(48px,6vw,72px)}
+.map-sec .wrap{max-width:1000px}
+.map-addr{font-size:13.5px;color:var(--grey);margin-top:12px;margin-bottom:20px}
+.map-wrap{border-radius:var(--rad);overflow:hidden;border:1px solid var(--bdr);height:360px}
+.map-wrap iframe{width:100%;height:100%;border:none;filter:invert(88%) hue-rotate(180deg) saturate(.85)}
+
+/* ================================================================
+   RESPONSIVE
+================================================================ */
+@media(max-width:900px){
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-grid>div:first-child{grid-column:1/-1}
+  .rp-layout{grid-template-columns:1fr}
+  .rp-sidebar{position:static}
+  .about-cols{grid-template-columns:1fr}
+  .c-cards{grid-template-columns:1fr}
+}
+@media(max-width:580px){
+  .feat-list{grid-template-columns:1fr}
+  .room-grid{grid-template-columns:1fr}
+  .rules-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .gal-wrap{aspect-ratio:4/3;max-height:320px}
+  .hero{min-height:400px}
+  .c-cards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:360px){
+  .c-cards{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     NAV
+================================================================ -->
+<nav id="nav">
+  <div class="nav-inner">
+
+    <!--
+      LOGO SLOT: Replace the text block below with:
+        <img src="logo.png" alt="TFE Apartments Logo" onclick="goTo('home')" style="cursor:pointer">
+      once you have the logo file ready.
+    -->
+    <div class="nav-logo" onclick="goTo('home')">TFE <em>Apartments</em></div>
+
+    <div class="nav-right">
+      <span class="nav-link on" id="nl-home" onclick="goTo('home')">Home</span>
+      <span class="nav-link" id="nl-about" onclick="goTo('about')">About</span>
+      <button type="button" class="btn-book" onclick="scrollRooms()">BOOK NOW</button>
+      <a class="btn-enq" href="https://wa.me/2347031127179?text=Hello%2C%20I%20want%20to%20make%20an%20enquiry%20about%20TFE%20Apartments." target="_blank" rel="noopener">Make Enquiry</a>
+    </div>
+
+    <div class="hbg" id="hbg" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mob-drawer" id="mob-drawer">
+  <span class="nav-link" onclick="goTo('home');closeNav()">Home</span>
+  <span class="nav-link" onclick="goTo('about');closeNav()">About</span>
+  <button type="button" class="btn-book" onclick="scrollRooms();closeNav()">BOOK NOW</button>
+  <a class="btn-enq" href="https://wa.me/2347031127179?text=Hello%2C%20I%20want%20to%20make%20an%20enquiry%20about%20TFE%20Apartments." target="_blank" rel="noopener" onclick="closeNav()">Make Enquiry</a>
+</div>
+
+
+<!-- ================================================================
+     HOME PAGE
+================================================================ -->
+<div id="pg-home" class="pg active">
+
+  <!-- HERO SLIDESHOW -->
+  <div class="hero">
+    <div class="hero-track" id="hero-track">
+
+      <!-- SLIDE 1 — Exterior Building Photo 1 -->
+      <div class="hero-slide">
+        <img src="photos/ext-1.jpeg" alt="TFE Apartments Building Exterior">
+        <div class="hero-overlay">
+          <div class="hero-text">
+            <h1>Your Premium <em>Home Away</em><br>From Home</h1>
+            <p>Luxury short-stay living in the heart of Ibadan. Spacious rooms, modern finishes, unmatched comfort.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 — Exterior Building Photo 2 -->
+      <div class="hero-slide">
+        <img src="photos/ext-2.jpeg" alt="TFE Apartments Exterior View">
+        <div class="hero-overlay">
+          <div class="hero-text">
+            <h1>Adegbite Street, <em>Liberty Road</em></h1>
+            <p>24/7 electricity, free high-speed WiFi, and top-notch security — all in one premium Ibadan address.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 — Interior Hallway -->
+      <div class="hero-slide">
+        <img src="photos/ext-3.jpeg" alt="TFE Apartments Interior">
+        <div class="hero-overlay">
+          <div class="hero-text">
+            <h1>Three Tiers of <em>Excellence</em></h1>
+            <p>Choose from Signature, Prestige, or Executive — each crafted for an unforgettable stay in Ibadan.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="hero-bar" id="hero-dots"></div>
+  </div><!-- /hero -->
+
+  <!-- FEATURES -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-hdr">
+        <span class="eyebrow">Why Choose Us</span>
+        <h2 class="sec-title">Everything You <em>Need</em></h2>
+        <div class="gold-rule"></div>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-ico">⚡</div>
+          <h3>24/7 Electricity</h3>
+          <p>Uninterrupted power supply guaranteed around the clock — no disruptions to your comfort.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">📶</div>
+          <h3>Free High-Speed WiFi</h3>
+          <p>Complimentary fast internet throughout your entire stay, included at no extra cost.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">🔒</div>
+          <h3>100% Security & CCTV</h3>
+          <p>Round-the-clock surveillance and on-site security for your complete peace of mind.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">🍳</div>
+          <h3>Personal Kitchen</h3>
+          <p>Every room comes with a private, fully equipped kitchen — cook at your own convenience.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">🚿</div>
+          <h3>Private Bathroom</h3>
+          <p>En-suite private bathrooms in every room, clean, modern, and exclusively yours.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">🫧</div>
+          <h3>Washing Machine Service</h3>
+          <p>In-house laundry facilities so you can travel light and always stay fresh.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">🚗</div>
+          <h3>Ample Parking Space</h3>
+          <p>Spacious and secure parking available for all guests at no extra charge.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">📺</div>
+          <h3>Smart TV</h3>
+          <p>Enjoy entertainment with a Smart TV and access to your favourite streaming services.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOM TYPES -->
+  <section class="sec" id="room-section" style="background:var(--bg2);border-top:1px solid var(--bdr)">
+    <div class="wrap">
+      <div class="sec-hdr">
+        <span class="eyebrow">Our Offerings</span>
+        <h2 class="sec-title">Choose Your <em>Room</em></h2>
+        <div class="gold-rule"></div>
+      </div>
+      <div class="room-grid">
+
+        <!-- SIGNATURE CARD -->
+        <div class="room-card" onclick="goTo('signature')">
+          <div class="room-thumb" style="padding:0">
+            <img src="photos/sig-1.jpeg" alt="Signature Room TFE Apartments" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          </div>
+          <div class="room-body">
+            <div class="room-tag">Signature</div>
+            <h2>Signature Room</h2>
+            <div class="room-price-sm">₦48,000 <span>/ night</span></div>
+            <div class="see-more">Explore Room <span class="arr">→</span></div>
+          </div>
+        </div>
+
+        <!-- PRESTIGE CARD -->
+        <div class="room-card" onclick="goTo('prestige')">
+          <div class="room-thumb" style="padding:0">
+            <img src="photos/pres-5.jpeg" alt="Prestige Room TFE Apartments" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          </div>
+          <div class="room-body">
+            <div class="room-tag">Prestige</div>
+            <h2>Prestige Room</h2>
+            <div class="room-price-sm">₦68,000 <span>/ night</span></div>
+            <div class="see-more">Explore Room <span class="arr">→</span></div>
+          </div>
+        </div>
+
+        <!-- EXECUTIVE CARD -->
+        <div class="room-card" onclick="goTo('executive')">
+          <div class="room-thumb" style="padding:0">
+            <img src="photos/exec-1.jpeg" alt="executive Room TFE Apartments" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          </div>
+          <div class="room-body">
+            <div class="room-tag">Executive</div>
+            <h2>Executive Room</h2>
+            <div class="room-price-sm">₦78,000 <span>/ night</span></div>
+            <div class="see-more">Explore Room <span class="arr">→</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-home"></div>
+</div><!-- /home -->
+
+
+<!-- ================================================================
+     ROOM PAGES  (filled by JavaScript)
+================================================================ -->
+<div id="pg-signature" class="pg"></div>
+<div id="pg-prestige"  class="pg"></div>
+<div id="pg-executive" class="pg"></div>
+
+
+<!-- ================================================================
+     ABOUT PAGE
+================================================================ -->
+<div id="pg-about" class="pg">
+
+  <div class="about-hero">
+    <span class="eyebrow">Our Story</span>
+    <h1>About TFE <em>Apartments</em></h1>
+    <p>A premium short-stay destination in Ibadan, designed for guests who refuse to compromise on comfort, security, or style.</p>
+  </div>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="about-cols">
+        <div class="about-text">
+          <span class="eyebrow">Who We Are</span>
+          <h2 class="sec-title" style="font-size:1.8rem;margin-bottom:20px">Redefining Short-Stay <em>Living</em></h2>
+          <p>TFE Apartments is a premier short-stay complex nestled on Adegbite Street, Liberty Road, in the heart of Ibadan. We offer a curated selection of luxury rooms — Signature, Prestige, and Executive — each thoughtfully designed to provide the warmth of home with the convenience of a world-class hotel.</p>
+          <p>Whether you're in Ibadan for business, a family visit, or leisure, our apartments give you the space, privacy, and amenities to make your stay completely seamless. From the moment you arrive, every detail has been considered so you don't have to worry about a thing.</p>
+          <p>We are committed to the highest standards of hospitality. Our team ensures that every guest experience is personalised, safe, and genuinely comfortable — every single time.</p>
+        </div>
+        <div>
+          <div class="stat-grid">
+            <div class="stat-box"><span class="stat-num">3</span><span class="stat-lbl">Room Categories</span></div>
+            <div class="stat-box"><span class="stat-num">24/7</span><span class="stat-lbl">Power & Security</span></div>
+            <div class="stat-box"><span class="stat-num">100%</span><span class="stat-lbl">CCTV Coverage</span></div>
+            <div class="stat-box"><span class="stat-num">5%</span><span class="stat-lbl">Off for 5+ Nights</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rules-sec">
+    <div class="wrap">
+      <span class="eyebrow">Policies</span>
+      <h2 class="sec-title">House <em>Rules</em></h2>
+      <div class="gold-rule"></div>
+      <div class="ci-row">
+        <div class="ci-box">
+          <div class="ci-label">Check-in Time</div>
+          <div class="ci-val">1:00 PM</div>
+        </div>
+        <div class="ci-box">
+          <div class="ci-label">Check-out Time</div>
+          <div class="ci-val">12:00 PM (Noon)</div>
+        </div>
+      </div>
+      <p class="ci-note">Early check-in or late check-out is available only with prior management approval. Please contact us in advance to arrange.</p>
+      <div class="rules-grid">
+        <div class="rule-item"><span class="rule-ico">🚭</span>No smoking inside rooms. A designated outdoor area is provided for smokers.</div>
+        <div class="rule-item"><span class="rule-ico">🐾</span>No pets are allowed on the premises.</div>
+        <div class="rule-item"><span class="rule-ico">🔇</span>Quiet hours are observed from 10:00 PM to 7:00 AM daily.</div>
+        <div class="rule-item"><span class="rule-ico">🎉</span>No parties or events without prior management approval.</div>
+        <div class="rule-item"><span class="rule-ico">🚶</span>No unapproved visitors or overnight guests are permitted.</div>
+        <div class="rule-item"><span class="rule-ico">⚖️</span>No illegal activities of any kind on the premises.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-sec">
+    <div class="wrap">
+      <span class="eyebrow">Get In Touch</span>
+      <h2 class="sec-title">Contact <em>Us</em></h2>
+      <div class="gold-rule"></div>
+      <div class="c-cards">
+        <a class="c-card" href="https://wa.me/2347031127179?text=Hello%2C%20I%20want%20to%20make%20an%20enquiry%20about%20TFE%20Apartments." target="_blank" rel="noopener">
+          <div class="c-ico">💬</div>
+          <span class="c-lbl">WhatsApp</span>
+          <p>+234 703 112 7179</p>
+        </a>
+        <a class="c-card" href="https://www.instagram.com/tfeapartments" target="_blank" rel="noopener">
+          <div class="c-ico">📸</div>
+          <span class="c-lbl">Instagram</span>
+          <p>@tfeapartments</p>
+        </a>
+        <a class="c-card" href="mailto:md@tfeapartments.com">
+          <div class="c-ico">✉️</div>
+          <span class="c-lbl">Email</span>
+          <p>md@tfeapartments.com</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-sec">
+    <div class="wrap">
+      <span class="eyebrow">Location</span>
+      <h2 class="sec-title">Find <em>Us</em></h2>
+      <div class="gold-rule"></div>
+      <p class="map-addr">📍 Adegbite Street, Liberty Road, Ibadan, Oyo State, Nigeria.</p>
+      <div class="map-wrap">
+        <iframe
+          src="https://maps.google.com/maps?q=Adegbite+Street%2C+Liberty+Road%2C+Ibadan%2C+Nigeria&output=embed"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="TFE Apartments Location">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-about"></div>
+</div><!-- /about -->
+
+
+<!-- ================================================================
+     JAVASCRIPT
+================================================================ -->
+<script>
+/* ─── ROOM DATA ───────────────────────────────────────────── */
+const ROOMS = {
+  signature: {
+    name: 'Signature',
+    price: '48,000',
+    slides: [
+      { src: 'photos/sig-1.jpeg', alt: 'Signature Room – Bedroom' },
+      { src: 'photos/sig-2.jpeg', alt: 'Signature Room – Living Area' },
+      { src: 'photos/sig-3.jpeg', alt: 'Signature Room – Smart TV' },
+      { src: 'photos/sig-4.jpeg', alt: 'Signature Room – Bedside' },
+      { src: 'photos/sig-5.jpeg', alt: 'Signature Room – Room Detail' },
+      { src: 'photos/sig-6.jpeg', alt: 'Signature Room – Kitchen' },
+      { src: 'photos/sig-7.jpeg', alt: 'Signature Room – Bathroom' },
+    ]
+  },
+  prestige: {
+    name: 'Prestige',
+    price: '68,000',
+    slides: [
+      { src: 'photos/pres-5.jpeg', alt: 'Prestige Room – Bedroom' },
+      { src: 'photos/pres-1.jpeg', alt: 'Prestige Room – Living Area' },
+      { src: 'photos/pres-2.jpeg', alt: 'Prestige Room – Lounge' },
+      { src: 'photos/pres-3.jpeg', alt: 'Prestige Room – Sofa & Art' },
+      { src: 'photos/pres-4.jpeg', alt: 'Prestige Room – Feature Ceiling' },
+      { src: 'photos/pres-6.jpeg', alt: 'Prestige Room – TV & Armchair' },
+      { src: 'photos/pres-7.jpeg', alt: 'Prestige Room – Wardrobe View' },
+      { src: 'photos/pres-8.jpeg', alt: 'Prestige Room – Kitchen' },
+      { src: 'photos/pres-9.jpeg', alt: 'Prestige Room – Bathroom' },
+    ]
+  },
+  executive: {
+    name: 'Executive',
+    price: '78,000',
+    slides: [
+      { src: 'photos/exec-1.jpeg', alt: 'Executive Room – Living Area' },
+      { src: 'photos/exec-4.jpeg', alt: 'Executive Room – Bedroom' },
+      { src: 'photos/exec-2.jpeg', alt: 'Executive Room – Lounge' },
+      { src: 'photos/exec-5.jpeg', alt: 'Executive Room – Bedroom & TV' },
+      { src: 'photos/exec-6.jpeg', alt: 'Executive Room – Kitchen' },
+      { src: 'photos/exec-7.jpeg', alt: 'Executive Room – Bathroom' },
+    ]
+  }
+};
+
+const FEATURES = [
+  ['🛁','Private Bathroom'],
+  ['🍳','Personal Kitchen'],
+  ['⚡','24/7 Electricity'],
+  ['📶','Free High-Speed WiFi'],
+  ['📺','Smart TV'],
+  ['🔒','Secure & Quiet Environment'],
+  ['🚗','Ample Parking Space'],
+  ['🫧','Washing Machine Service'],
+  ['📹','24/7 CCTV Surveillance'],
+  ['🛎️','Dedicated Guest Support'],
+];
+
+/* ─── FOOTER HTML ─────────────────────────────────────────── */
+const FOOTER_HTML = `
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo">TFE <em>Apartments</em></div>
+      <p class="foot-desc">Premium short-stay apartments in Ibadan. Your comfort, security, and satisfaction are our highest priorities.</p>
+      <div class="foot-socials">
+        <a class="fsoc" href="https://wa.me/2347031127179" target="_blank" rel="noopener" title="WhatsApp">💬</a>
+        <a class="fsoc" href="https://www.instagram.com/tfeapartments" target="_blank" rel="noopener" title="Instagram">📸</a>
+        <a class="fsoc" href="mailto:md@tfeapartments.com" title="Email">✉️</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Pages</h4>
+      <ul>
+        <li onclick="goTo('home')">Home</li>
+        <li onclick="goTo('signature')">Signature Room</li>
+        <li onclick="goTo('prestige')">Prestige Room</li>
+        <li onclick="goTo('executive')">Executive Room</li>
+        <li onclick="goTo('about')">About Us</li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="https://wa.me/2347031127179" target="_blank" rel="noopener">
+        <span class="fc-ico">💬</span>+234 703 112 7179
+      </a>
+      <a href="https://www.instagram.com/tfeapartments" target="_blank" rel="noopener">
+        <span class="fc-ico">📸</span>@tfeapartments
+      </a>
+      <a href="mailto:md@tfeapartments.com">
+        <span class="fc-ico">✉️</span>md@tfeapartments.com
+      </a>
+      <a style="pointer-events:none;cursor:default">
+        <span class="fc-ico">📍</span>Adegbite Street, Liberty Road, Ibadan
+      </a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 TFE Apartments. All rights reserved.</span>
+    <span>Adegbite Street, Liberty Road, Ibadan, Nigeria</span>
+  </div>
+</footer>`;
+
+/* ─── BUILD ROOM PAGES ────────────────────────────────────── */
+function buildRoom(key) {
+  const r = ROOMS[key];
+  const waBook = `https://wa.me/2347031127179?text=Hello%2C%20I%20want%20to%20book%20a%20${encodeURIComponent(r.name)}%20Room%20at%20TFE%20Apartments.`;
+  const waEnq  = `https://wa.me/2347031127179?text=Hello%2C%20I%20want%20to%20make%20enquiries%20about%20${encodeURIComponent(r.name)}%20Room%20at%20TFE%20Apartments.`;
+  const count  = r.slides.length;
+
+  const slidesHTML = r.slides.map((s, i) => {
+    const inner = s.src
+      ? `<img src="${s.src}" alt="${s.alt}" style="width:100%;height:100%;object-fit:cover">`
+      : `<div class="ph" style="height:100%;width:100%">
+          <div class="ph-ico">📷</div>
+          <div class="ph-lbl">PHOTO SLOT — ${s.lbl}</div>
+          <div class="ph-sub">${s.sub}</div>
+        </div>`;
+    return `<div class="gal-slide">${inner}</div>`;
+  }).join('');
+
+  const dotsHTML = r.slides.map((_,i) =>
+    `<span class="gdot${i===0?' on':''}" onclick="galGoTo('${key}',${i})"></span>`
+  ).join('');
+
+  const featsHTML = FEATURES.map(([ico,lbl]) =>
+    `<div class="fi"><span class="fi-ico">${ico}</span>${lbl}</div>`
+  ).join('');
+
+  return `
+  <div class="rp-head">
+    <div class="rp-head-inner">
+      <div class="breadcrumb">
+        <span class="bc-link" onclick="goTo('home')">Home</span>
+        <span>›</span>
+        <span>${r.name} Room</span>
+      </div>
+      <h1>${r.name} Room</h1>
+      <div class="avail-badge"><span class="adot"></span>Currently Available</div>
+    </div>
+  </div>
+
+  <div class="rp-gal">
+    <div class="wrap">
+      <div class="gal-wrap" id="gw-${key}">
+        <div class="gal-track" id="gt-${key}">${slidesHTML}</div>
+        <button type="button" class="gal-btn gal-prev" onclick="galPrev('${key}')">&#8249;</button>
+        <button type="button" class="gal-btn gal-next" onclick="galNext('${key}')">&#8250;</button>
+        <div class="gal-count" id="gc-${key}">1 / ${count}</div>
+      </div>
+      <div class="gal-dots" id="gd-${key}">${dotsHTML}</div>
+    </div>
+  </div>
+
+  <div class="rp-body">
+    <div class="wrap">
+      <div class="rp-layout">
+        <div class="rp-feats">
+          <h3>What's Included</h3>
+          <div class="feat-list">${featsHTML}</div>
+        </div>
+        <div class="rp-sidebar">
+          <div class="sb-price">₦${r.price}</div>
+          <div class="sb-per">per night</div>
+          <div class="sb-caution">+ ₦50,000 refundable caution fee — returned in full at check-out</div>
+          <div class="sb-discount">🏷️ 5% discount for stays of 5 nights or more</div>
+          <hr class="sb-rule">
+          <a class="wa-btn primary" href="${waBook}" target="_blank" rel="noopener">📲&nbsp; Book Now on WhatsApp</a>
+          <a class="wa-btn outline" href="${waEnq}"  target="_blank" rel="noopener">💬&nbsp; Make an Enquiry</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-${key}"></div>`;
+}
+
+/* ─── HERO SLIDESHOW ─────────────────────────────────────── */
+const HERO_COUNT = 3;
+let heroIdx = 0, heroTimer = null;
+
+function heroBuildDots() {
+  const bar = document.getElementById('hero-dots');
+  if (!bar) return;
+  if (bar.children.length) return; // already built
+  for (let i = 0; i < HERO_COUNT; i++) {
+    const d = document.createElement('span');
+    d.className = 'hdot' + (i === 0 ? ' on' : '');
+    d.onclick = () => heroGoTo(i);
+    bar.appendChild(d);
+  }
+}
+
+function heroGoTo(n) {
+  heroIdx = (n + HERO_COUNT) % HERO_COUNT;
+  document.getElementById('hero-track').style.transform = `translateX(-${heroIdx * 100}%)`;
+  document.querySelectorAll('.hdot').forEach((d, i) => d.classList.toggle('on', i === heroIdx));
+}
+
+function startHero() {
+  stopHero();
+  heroBuildDots();
+  heroGoTo(0);
+  heroTimer = setInterval(() => heroGoTo(heroIdx + 1), 4500);
+}
+
+function stopHero() { clearInterval(heroTimer); }
+
+/* ─── ROOM GALLERIES ─────────────────────────────────────── */
+const gal = {};
+
+function galInit(key) {
+  galStop(key);
+  const count = ROOMS[key].slides.length;
+  gal[key] = { idx: 0, count, timer: null };
+  galGoTo(key, 0);
+  gal[key].timer = setInterval(() => galGoTo(key, gal[key].idx + 1), 5200);
+  addSwipe(`gw-${key}`, () => galNext(key), () => galPrev(key));
+}
+
+function galStop(key) { if (gal[key]) clearInterval(gal[key].timer); }
+
+function galGoTo(key, n) {
+  const s = gal[key]; if (!s) return;
+  s.idx = (n + s.count) % s.count;
+  const track = document.getElementById(`gt-${key}`);
+  if (track) track.style.transform = `translateX(-${s.idx * 100}%)`;
+  const count = document.getElementById(`gc-${key}`);
+  if (count) count.textContent = `${s.idx + 1} / ${s.count}`;
+  document.querySelectorAll(`#gd-${key} .gdot`).forEach((d, i) => d.classList.toggle('on', i === s.idx));
+}
+
+function galPrev(key) { galGoTo(key, gal[key].idx - 1); }
+function galNext(key) { galGoTo(key, gal[key].idx + 1); }
+
+/* ─── TOUCH SWIPE ─────────────────────────────────────────── */
+function addSwipe(id, onLeft, onRight) {
+  const el = document.getElementById(id);
+  if (!el || el.dataset.swipe) return;
+  el.dataset.swipe = '1';
+  let sx = 0;
+  el.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 44) { dx < 0 ? onLeft() : onRight(); }
+  }, { passive: true });
+}
+
+/* ─── NAVIGATION ─────────────────────────────────────────── */
+const PAGES    = ['home', 'signature', 'prestige', 'executive', 'about'];
+const ROOM_KEYS = ['signature', 'prestige', 'executive'];
+
+function goTo(page) {
+  stopHero();
+  ROOM_KEYS.forEach(k => galStop(k));
+
+  PAGES.forEach(p => {
+    const el = document.getElementById(`pg-${p}`);
+    if (el) el.classList.remove('active');
+  });
+
+  const target = document.getElementById(`pg-${page}`);
+  if (target) target.classList.add('active');
+
+  document.getElementById('nl-home').classList.toggle('on', page === 'home');
+  document.getElementById('nl-about').classList.toggle('on', page === 'about');
+
+  try { window.scrollTo(0, 0); } catch(e) { window.scrollTop = 0; }
+
+  if (page === 'home')          { startHero(); }
+  else if (ROOM_KEYS.includes(page)) { galInit(page); }
+
+  history.pushState(null, '', `#${page}`);
+}
+
+function scrollRooms() {
+  const homeActive = document.getElementById('pg-home').classList.contains('active');
+  if (!homeActive) {
+    goTo('home');
+    setTimeout(() => {
+      const el = document.getElementById('room-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 150);
+  } else {
+    const el = document.getElementById('room-section');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+/* ─── MOBILE NAV ─────────────────────────────────────────── */
+function toggleNav() {
+  document.getElementById('hbg').classList.toggle('open');
+  document.getElementById('mob-drawer').classList.toggle('open');
+}
+function closeNav() {
+  document.getElementById('hbg').classList.remove('open');
+  document.getElementById('mob-drawer').classList.remove('open');
+}
+
+/* ─── INIT ──────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    // Build room pages
+    ROOM_KEYS.forEach(key => {
+      const el = document.getElementById(`pg-${key}`);
+      if (el) el.innerHTML = buildRoom(key);
+    });
+
+    // Inject all footers
+    document.querySelectorAll('[id^="footer-"]').forEach(el => {
+      el.innerHTML = FOOTER_HTML;
+    });
+
+    // Route from hash or default to home
+    const hash = window.location.hash.replace('#', '');
+    goTo(PAGES.includes(hash) ? hash : 'home');
+  } catch (err) {
+    console.warn('TFE init error:', err);
+  }
+});
+
+// Browser back / forward
+window.addEventListener('popstate', () => {
+  const hash = window.location.hash.replace('#', '');
+  goTo(PAGES.includes(hash) ? hash : 'home');
+});
+</script>
+</body>
+</html>
